@@ -103,8 +103,6 @@ class ContextMenuBuilder {
     if (!menu) return;
     this.menu = menu;
     this.menu.popup({window: this.windowOrWebView});
-    contextMenuPrepends = [];
-    contextMenuAppends = [];
   }
 
   /**
@@ -271,7 +269,7 @@ class ContextMenuBuilder {
     let search = new MenuItem({
       label: this.stringTable.searchGoogle(),
       click: () => {
-        let url = `https://www.google.com/search?q=${encodeURIComponent(menuInfo.selectionText)}`;
+        let url = `https://google.com/search?q=${encodeURIComponent(menuInfo.selectionText)}`;
 
         //d(`Searching Google using ${url}`);
         shell.openExternal(url);
@@ -415,7 +413,7 @@ class ContextMenuBuilder {
 
   /**
    * @param {String} menuType link, image, textinput, or text
-   * @param {MenuItem} menuItem
+   * @param {MenuItem} menuItem 
    */
   appendContextMenuItem(menuType, menuItem) {
     contextMenuAppends.push({type: menuType, item: menuItem});
