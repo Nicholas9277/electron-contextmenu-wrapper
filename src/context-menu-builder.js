@@ -14,6 +14,8 @@ const contextMenuStringTable = {
   lookUpDefinition: ({word}) => `Look Up "${word}"`,
   searchGoogle: () => `查看谷歌翻译`,
   searchDeelp: () => `查看Deelp翻译`,
+  searchBaiDu: () => `查看百度翻译`,
+  searchSouGou: () => `查看搜狗翻译`,
   cut: () => `剪切`,
   copy: () => `复制`,
   paste: () => `粘贴`,
@@ -270,7 +272,7 @@ class ContextMenuBuilder {
     let search = new MenuItem({
       label: this.stringTable.searchGoogle(),
       click: () => {
-        let url = `https://google.com/search?q=${encodeURIComponent(menuInfo.selectionText)}`;
+        let url = `https://translate.google.com/?sl=en&tl=zh-CN&text=${encodeURIComponent(menuInfo.selectionText)}`;
 
         //d(`Searching Google using ${url}`);
         shell.openExternal(url);
@@ -284,8 +286,26 @@ class ContextMenuBuilder {
         shell.openExternal(url);
       }
     });
+    let searchBaiDu = new MenuItem({
+      label: this.stringTable.searchBaiDu(),
+      click: () => {
+        let url = `https://fanyi.baidu.com/?aldtype=16047#en/zh/${encodeURIComponent(menuInfo.selectionText)}`;
+        //d(`Searching Google using ${url}`);
+        shell.openExternal(url);
+      }
+    });
+    let searchSouGou = new MenuItem({
+      label: this.stringTable.searchSouGou(),
+      click: () => {
+        let url = `https://fanyi.sogou.com/text?keyword=${encodeURIComponent(menuInfo.selectionText)}&transfrom=auto&transto=zh-CHS&model=general`;
+        //d(`Searching Google using ${url}`);
+        shell.openExternal(url);
+      }
+    });
     menu.append(search);
     menu.append(searchDeelp);
+    menu.append(searchBaiDu);
+    menu.append(searchSouGou);
     this.addSeparator(menu);
 
     return menu;
