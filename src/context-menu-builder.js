@@ -272,7 +272,7 @@ class ContextMenuBuilder {
     let search = new MenuItem({
       label: this.stringTable.searchGoogle(),
       click: () => {
-        let url = `https://translate.google.com/?sl=en&tl=zh-CN&text=${encodeURIComponent(menuInfo.selectionText)}`;
+        let url = `https://translate.google.com/?sl=auto&tl=zh-CN&text=${encodeURIComponent(menuInfo.selectionText)}`;
 
         //d(`Searching Google using ${url}`);
         shell.openExternal(url);
@@ -281,7 +281,7 @@ class ContextMenuBuilder {
     let searchDeelp = new MenuItem({
       label: this.stringTable.searchDeelp(),
       click: () => {
-        let url = `https://www.deepl.com/translator#en/zh/${encodeURIComponent(menuInfo.selectionText)}`;
+        let url = `https://www.deepl.com/translator#auto/zh/${encodeURIComponent(menuInfo.selectionText)}`;
         //d(`Searching Google using ${url}`);
         shell.openExternal(url);
       }
@@ -289,7 +289,7 @@ class ContextMenuBuilder {
     let searchBaiDu = new MenuItem({
       label: this.stringTable.searchBaiDu(),
       click: () => {
-        let url = `https://fanyi.baidu.com/?aldtype=16047#en/zh/${encodeURIComponent(menuInfo.selectionText)}`;
+        let url = `https://fanyi.baidu.com/?aldtype=16047#auto/zh/${encodeURIComponent(menuInfo.selectionText)}`;
         //d(`Searching Google using ${url}`);
         shell.openExternal(url);
       }
