@@ -12,10 +12,11 @@ const contextMenuStringTable = {
   copyImageUrl: () => `Copy Image URL`,
   copyImage: () => `Copy Image`,
   lookUpDefinition: ({word}) => `Look Up "${word}"`,
-  searchGoogle: () => `Search with Google`,
-  cut: () => `Cut`,
-  copy: () => `Copy`,
-  paste: () => `Paste`,
+  searchGoogle: () => `查看谷歌翻译`,
+  searchDeelp: () => `查看Deelp翻译`,
+  cut: () => `剪切`,
+  copy: () => `复制`,
+  paste: () => `粘贴`,
   inspectElement: () => `Inspect Element`,
 };
 
@@ -275,8 +276,16 @@ class ContextMenuBuilder {
         shell.openExternal(url);
       }
     });
-
+    let searchDeelp = new MenuItem({
+      label: this.stringTable.searchDeelp(),
+      click: () => {
+        let url = `https://www.deepl.com/translator#en/zh/${encodeURIComponent(menuInfo.selectionText)}`;
+        //d(`Searching Google using ${url}`);
+        shell.openExternal(url);
+      }
+    });
     menu.append(search);
+    menu.append(searchDeelp);
     this.addSeparator(menu);
 
     return menu;
