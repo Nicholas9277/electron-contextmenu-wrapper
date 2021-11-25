@@ -19,7 +19,7 @@ class ContextMenuListener {
    *                                                  BrowserWindow or a WebView
    */
   constructor(handler, windowOrWebView=null) {
-    this.windowOrWebView = windowOrWebView || remote.getCurrentWebContents();
+    this.windowOrWebView = windowOrWebView || require("@electron/remote").getCurrentWebContents();
     this.handler = handler;
 
     this.windowOrWebView.on('context-menu', this.handler);
