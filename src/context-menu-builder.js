@@ -1,7 +1,7 @@
 const {remote} = require('electron');
 const {truncateString, matchesWord} = require('./utility');
 
-const {clipboard, Menu, MenuItem, nativeImage, shell} = remote ? remote : require('electron');
+const {clipboard, Menu, MenuItem, nativeImage, shell} = require("@electron/remote") ? require("@electron/remote") : require('electron');
 
 let d = require('debug')('electron-contextmenu-wrapper:context-menu-builder');
 
@@ -53,7 +53,7 @@ class ContextMenuBuilder {
     this.menu = null;
     this.stringTable = Object.assign({}, contextMenuStringTable);
 
-    this.windowOrWebView = windowOrWebView || remote.getCurrentWindow();
+    this.windowOrWebView = windowOrWebView || require("@electron/remote").getCurrentWindow();
 
     let ctorName = Object.getPrototypeOf(this.windowOrWebView).constructor.name;
     if (ctorName === 'WebContents') {
